@@ -1,0 +1,19 @@
+############
+# Java
+############
+*.class
+
+############
+# Maven
+############
+target/
+bin/
+pom.xml
+.settings/
+.classpath
+.project
+
+############
+# Vim
+############
+*.swp
