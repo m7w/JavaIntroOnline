@@ -9,7 +9,7 @@ public class RArrayInt {
 
     private int currentLength = 0;
 
-    private int currentIndex = 0;
+    private int currentIndex = -1;
 
     private int[] array;
 
@@ -94,6 +94,7 @@ public class RArrayInt {
 
     public void insertAt(int index, int el) {
 
+        currentIndex++;
         if (index > currentIndex) {
             throw new IndexOutOfBoundsException("Индекс: " + index + " выходит за границы массива размером: " + currentLength);
         }
@@ -104,38 +105,39 @@ public class RArrayInt {
         }
         System.arraycopy(array, index, array, index + 1, tailLength);
         array[index] = el;
-        currentIndex++;
     }
 
     public void insertAt(int index, RArrayInt rArr) {
 
-        if (index > currentIndex) {
-            throw new IndexOutOfBoundsException("Индекс: " + index + " выходит за границы массива размером: " + currentLength);
-        }
         int[] arr = rArr.toArray();
         int tailLength = currentLength - index;
         currentLength = currentLength + arr.length;
+        currentIndex = currentLength - 1;
+
+        if (index > currentIndex) {
+            throw new IndexOutOfBoundsException("Индекс: " + index + " выходит за границы массива размером: " + currentLength);
+        }
         if (currentLength > reservedLength) {
             grow(currentLength);
         }
         System.arraycopy(array, index, array, index + arr.length, tailLength);
         System.arraycopy(arr, 0, array, index, arr.length);
-        currentIndex = currentLength - 1;
     }
 
     public void insertAt(int index, int[] arr) {
 
+        int tailLength = currentLength - index;
+        currentLength = currentLength + arr.length;
+        currentIndex = currentLength - 1;
+
         if (index > currentIndex) {
             throw new IndexOutOfBoundsException("Индекс: " + index + " выходит за границы массива размером: " + currentLength);
         }
-        int tailLength = currentLength - index;
-        currentLength = currentLength + arr.length;
         if (currentLength > reservedLength) {
             grow(currentLength);
         }
         System.arraycopy(array, index, array, index + arr.length, tailLength);
         System.arraycopy(arr, 0, array, index, arr.length);
-        currentIndex = currentLength - 1;
     }
 
     public int[] toArray() {
