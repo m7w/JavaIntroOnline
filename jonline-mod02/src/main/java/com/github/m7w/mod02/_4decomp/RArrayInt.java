@@ -1,11 +1,9 @@
 package com.github.m7w.mod02._4decomp;
 
-import java.lang.reflect.Array;
-
 /**
  * Helper class for some tasks of this module.
  */
-public class RArray<E> {
+public class RArrayInt {
 
     private int reservedLength = 10;
 
@@ -13,27 +11,27 @@ public class RArray<E> {
 
     private int currentIndex = 0;
 
-    private Object[] array;
+    private int[] array;
 
-    public RArray() {
+    public RArrayInt() {
 
-        array = new Object[reservedLength];
+        array = new int[reservedLength];
     }
 
-    public RArray(int size) {
+    public RArrayInt(int size) {
 
         reservedLength = size;
-        array = new Object[size];
+        array = new int[size];
     }
 
-    public RArray(E[] arr) {
+    public RArrayInt(int[] arr) {
 
         if (arr.length == 0) {
-            array = new Object[reservedLength];
+            array = new int[reservedLength];
         } else {
             reservedLength = arr.length;
             currentLength = arr.length;
-            array = new Object[reservedLength];
+            array = new int[reservedLength];
             System.arraycopy(arr, 0, array, 0, reservedLength);
             currentIndex = currentLength - 1;
         }
@@ -44,29 +42,26 @@ public class RArray<E> {
         return currentLength;
     }
 
-    @SuppressWarnings("unchecked")
-    public E get(int index) {
+    public int get(int index) {
 
         if (index > currentIndex) {
-            throw new IndexOutOfBoundsException(
-                    "Индекс: " + index + " выходит за границы массива размером: " + currentLength);
+            throw new IndexOutOfBoundsException("Индекс: " + index + " выходит за границы массива размером: " + currentLength);
         }
-        return (E) array[index];
+        return array[index];
     }
 
-    @SuppressWarnings("unchecked")
-    public E set(int index, E el) {
+    public int set(int index, int el) {
 
         if (index > currentIndex) {
             throw new IndexOutOfBoundsException(
                     "Индекс: " + index + " выходит за границы массива размером: " + currentLength);
         }
-        E oldEl = (E) array[index];
+        int oldEl = array[index];
         array[index] = el;
         return oldEl;
     }
 
-    public void append(E el) {
+    public void append(int el) {
 
         if (currentLength == reservedLength) {
             grow(reservedLength * 2);
@@ -75,7 +70,7 @@ public class RArray<E> {
         currentLength++;
     }
 
-    public void appendAll(RArray<E> ra) {
+    public void appendAll(RArrayInt ra) {
 
         int newLength = currentLength + ra.length();
         if (newLength > reservedLength) {
@@ -86,7 +81,7 @@ public class RArray<E> {
         currentIndex = currentLength - 1;
     }
 
-    public void appendAll(E[] arr) {
+    public void appendAll(int[] arr) {
 
         int newLength = currentLength + arr.length;
         if (newLength > reservedLength) {
@@ -97,7 +92,7 @@ public class RArray<E> {
         currentIndex = currentLength - 1;
     }
 
-    public void insertAt(int index, E el) {
+    public void insertAt(int index, int el) {
 
         if (index > currentIndex) {
             throw new IndexOutOfBoundsException("Индекс: " + index + " выходит за границы массива размером: " + currentLength);
@@ -112,12 +107,12 @@ public class RArray<E> {
         currentIndex++;
     }
 
-    public void insertAt(int index, RArray<E> rArr) {
+    public void insertAt(int index, RArrayInt rArr) {
 
         if (index > currentIndex) {
             throw new IndexOutOfBoundsException("Индекс: " + index + " выходит за границы массива размером: " + currentLength);
         }
-        Object[] arr = rArr.toArray();
+        int[] arr = rArr.toArray();
         int tailLength = currentLength - index;
         currentLength = currentLength + arr.length;
         if (currentLength > reservedLength) {
@@ -128,7 +123,7 @@ public class RArray<E> {
         currentIndex = currentLength - 1;
     }
 
-    public void insertAt(int index, E[] arr) {
+    public void insertAt(int index, int[] arr) {
 
         if (index > currentIndex) {
             throw new IndexOutOfBoundsException("Индекс: " + index + " выходит за границы массива размером: " + currentLength);
@@ -143,33 +138,18 @@ public class RArray<E> {
         currentIndex = currentLength - 1;
     }
 
-    public Object[] toArray() {
+    public int[] toArray() {
 
         if (currentLength < reservedLength) {
             trim(currentLength);
         }
         return array;
     }
-    
-    @SuppressWarnings("unchecked")
-    public <T> T[] toArray(T[] arr) {
-
-        int length = arr.length;
-        if (currentLength <= length) {
-            System.arraycopy(array, 0, arr, 0, currentLength);
-            for (int i = currentLength; i < length; i++)
-                arr[i] = null;
-            return arr;
-        }
-        T[] arr1 = (T[]) Array.newInstance(arr.getClass().getComponentType(), currentLength);
-        System.arraycopy(array, 0, arr1, 0, currentLength);
-        return arr1;
-    }
 
     private void trim(int length) {
 
         if (length < reservedLength) {
-            Object[] tmpArray = new Object[length];
+            int[] tmpArray = new int[length];
             System.arraycopy(array, 0, tmpArray, 0, length);
             reservedLength = length;
             array = tmpArray;
@@ -178,7 +158,7 @@ public class RArray<E> {
 
     private void grow(int length) {
 
-        Object[] tmpArray = new Object[length];
+        int[] tmpArray = new int[length];
         System.arraycopy(array, 0, tmpArray, 0, reservedLength);
         reservedLength = length;
         array = tmpArray;
