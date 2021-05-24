@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Пояснение. Составить метод(методы) для вычисления суммы трех последовательно расположенных элементов
  * массива с номерами от k до m.
  */
-public class Task48 {
+class Task48 {
 
     public static void main(String[] args) {
 

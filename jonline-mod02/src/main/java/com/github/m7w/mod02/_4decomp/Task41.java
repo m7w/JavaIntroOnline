@@ -6,7 +6,7 @@ import java.util.Scanner;
  * 1. Написать метод(методы) для нахождения наибольшего общего делителя и наименьшего общего кратного двух
  * натуральных чисел.
  */
-public class Task41 {
+class Task41 {
 
     public static void main(String[] args) {
 

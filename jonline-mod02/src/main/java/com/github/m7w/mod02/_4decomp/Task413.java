@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Найти и напечатать все пары «близнецов» из отрезка [n,2n], где n - заданное натуральное число больше 2. Для
  * решения задачи использовать декомпозицию.
  */
-public class Task413 {
+class Task413 {
 
     public static void main(String[] args) {
 
@@ -20,9 +20,11 @@ public class Task413 {
         } while (n < 3);
 
         for (long i = n; i <= 2 * n; i++) {
-            if (isPrime(i))
-                if (isPrime(i + 2))
+            if (isPrime(i)) {
+                if (isPrime(i + 2)) {
                     System.out.println(i + " " + (i + 2));
+                }
+            }
         }
     }
 
@@ -33,7 +35,7 @@ public class Task413 {
         long i;
 
         System.out.print(message);
-        while(!sc.hasNextLong()) {
+        while (!sc.hasNextLong()) {
             System.out.print("Введено неверное число. " + message);
             sc.next();
         }
@@ -45,8 +47,9 @@ public class Task413 {
     public static boolean isPrime(long n) {
 
         for (long i = 3; i < n; i++) {
-            if (n % i == 0)
+            if (n % i == 0) {
                 return false;
+            }
         }
 
         return true;

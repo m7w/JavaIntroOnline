@@ -6,7 +6,7 @@ import java.util.Scanner;
  * 12. Даны натуральные числа К и N. Написать метод(методы) формирования массива А, элементами которого
  * являются числа, сумма цифр которых равна К и которые не большее N.
  */
-public class Task412 {
+class Task412 {
 
     public static void main(String[] args) {
 
@@ -18,15 +18,17 @@ public class Task412 {
 
         for (int i = 1; i < N; i++) {
             int ds = digitsSum(i);
-            if (ds == K)                 
+            if (ds == K) {                
                 A.append(i);
+            }
         }
 
         int[] array = A.toArray();
 
         System.out.println("А: ");
-        for (int i = 0; i < array.length; i++)
+        for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
+        }
         System.out.println();
     }
 
@@ -37,7 +39,7 @@ public class Task412 {
         int i;
         
         System.out.print(message);
-        while(!sc.hasNextInt()) {
+        while (!sc.hasNextInt()) {
             System.out.println("Введено неверное число. " + message);
             sc.next();
         }

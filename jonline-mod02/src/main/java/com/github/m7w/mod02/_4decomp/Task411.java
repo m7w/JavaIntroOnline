@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * 11. Написать метод(методы), определяющий, в каком из данных двух чисел больше цифр.
  */
-public class Task411 {
+class Task411 {
 
     public static void main(String[] args) {
 

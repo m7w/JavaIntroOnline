@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * 6. Написать метод(методы), проверяющий, являются ли данные три числа взаимно простыми.
  */
-public class Task46 {
+class Task46 {
 
     public static void main(String[] args) {
 

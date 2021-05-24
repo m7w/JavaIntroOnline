@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * 2. Написать метод(методы) для нахождения наибольшего общего делителя четырех натуральных чисел.
  */
-public class Task42 {
+class Task42 {
 
     public static void main(String[] args) {
 
